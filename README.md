@@ -3,7 +3,7 @@
 [![n8n](https://img.shields.io/badge/n8n-Academy_N8N101-EA4B71?logo=n8n&logoColor=white)](https://learn.n8n.io/)
 ![Final Exam](https://img.shields.io/badge/final_exam-16%2F16-2ea44f)
 ![Grade](https://img.shields.io/badge/weighted_grade-100%25-2ea44f)
-![Workflow](https://img.shields.io/badge/workflow_validation-passing-0B8793)
+![Validation](https://img.shields.io/github/actions/workflow/status/DiegoLeaoGarcia/n8n-academy-n8n101-essentials/validate-workflow.yml?branch=main&label=workflow%20validation)
 [![Credential](https://img.shields.io/badge/n8n-verified_credential-7B68EE)](https://badges.n8n.io/ed66725c-e39f-46ab-8e2b-a95b8aa1bd88#acc.aACPdsET)
 
 Professional portfolio documenting the practical work completed in the official **n8n Academy N8N101 Essentials** course.
