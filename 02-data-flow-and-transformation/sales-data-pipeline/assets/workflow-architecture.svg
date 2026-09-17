@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="760" viewBox="0 0 1400 760" role="img" aria-labelledby="title desc">
+  <title id="title">N8N101 Sales Data Pipeline architecture</title>
+  <desc id="desc">A workflow that retrieves orders, splits and transforms them, then branches into operational validation and regional CSV reporting.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#111827"/>
+      <stop offset="1" stop-color="#0f172a"/>
+    </linearGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-opacity=".3"/></filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0 0L10 5L0 10Z" fill="#94a3b8"/>
+    </marker>
+    <style>
+      .box{fill:#1e293b;stroke:#475569;stroke-width:2;rx:16;filter:url(#shadow)}
+      .accent{fill:#ea4b71;stroke:#fb7185}
+      .analytics{fill:#0f766e;stroke:#2dd4bf}
+      .file{fill:#6d28d9;stroke:#a78bfa}
+      .label{font:600 19px Arial,sans-serif;fill:#f8fafc;text-anchor:middle}
+      .small{font:14px Arial,sans-serif;fill:#cbd5e1;text-anchor:middle}
+      .line{stroke:#94a3b8;stroke-width:3;fill:none;marker-end:url(#arrow)}
+      .heading{font:700 34px Arial,sans-serif;fill:#f8fafc;text-anchor:middle}
+      .sub{font:17px Arial,sans-serif;fill:#94a3b8;text-anchor:middle}
+    </style>
+  </defs>
+  <rect width="1400" height="760" fill="url(#bg)"/>
+  <text x="700" y="55" class="heading">N8N101 — Sales Data Pipeline</text>
+  <text x="700" y="88" class="sub">Authenticated retrieval • transformation • branching • regional analytics • CSV delivery</text>
+
+  <rect x="60" y="150" width="190" height="90" class="box accent"/>
+  <text x="155" y="187" class="label">Get Sales Data</text>
+  <text x="155" y="215" class="small">1 item / 50 orders</text>
+
+  <rect x="315" y="150" width="190" height="90" class="box"/>
+  <text x="410" y="187" class="label">Split Orders</text>
+  <text x="410" y="215" class="small">1 → 50 items</text>
+
+  <rect x="570" y="150" width="210" height="90" class="box"/>
+  <text x="675" y="187" class="label">Set Order Totals</text>
+  <text x="675" y="215" class="small">quantity × unit price</text>
+
+  <path d="M250 195H315" class="line"/>
+  <path d="M505 195H570" class="line"/>
+
+  <path d="M780 195H850V340H920" class="line"/>
+  <path d="M780 195H850V540H920" class="line"/>
+
+  <text x="925" y="290" class="sub">Operational branch</text>
+  <rect x="920" y="310" width="190" height="90" class="box"/>
+  <text x="1015" y="347" class="label">Aggregate Orders</text>
+  <text x="1015" y="375" class="small">50 → 1 array</text>
+  <rect x="1170" y="310" width="170" height="90" class="box accent"/>
+  <text x="1255" y="347" class="label">Send Orders</text>
+  <text x="1255" y="375" class="small">validated payload</text>
+  <path d="M1110 355H1170" class="line"/>
+
+  <text x="925" y="490" class="sub">Analytics and reporting branch</text>
+  <rect x="920" y="510" width="175" height="90" class="box analytics"/>
+  <text x="1007" y="547" class="label">Filter Delivered</text>
+  <text x="1007" y="575" class="small">50 → 17 items</text>
+  <rect x="1150" y="510" width="190" height="90" class="box analytics"/>
+  <text x="1245" y="547" class="label">Summarize</text>
+  <text x="1245" y="575" class="small">17 → 4 regions</text>
+  <path d="M1095 555H1150" class="line"/>
+
+  <rect x="920" y="650" width="175" height="70" class="box analytics"/>
+  <text x="1007" y="680" class="label">Validate</text>
+  <text x="1007" y="704" class="small">regional analysis</text>
+  <rect x="1150" y="650" width="190" height="70" class="box file"/>
+  <text x="1245" y="680" class="label">CSV Report</text>
+  <text x="1245" y="704" class="small">binary field: report</text>
+  <path d="M1245 600V650" class="line"/>
+  <path d="M1150 685H1095" class="line"/>
+</svg>
