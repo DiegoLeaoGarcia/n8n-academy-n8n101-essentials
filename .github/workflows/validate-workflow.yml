@@ -1,0 +1,51 @@
+name: Validate n8n workflows
+
+on:
+  push:
+    paths:
+      - "**/workflow.json"
+      - ".github/workflows/validate-workflow.yml"
+  pull_request:
+    paths:
+      - "**/workflow.json"
+      - ".github/workflows/validate-workflow.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Validate JSON and n8n structure
+        shell: bash
+        run: |
+          set -euo pipefail
+          mapfile -t files < <(find . -name workflow.json -type f)
+          test "${#files[@]}" -gt 0
+
+          for file in "${files[@]}"; do
+            echo "Validating $file"
+            jq -e '
+              (.nodes | type == "array" and length > 0) and
+              (.connections | type == "object") and
+              ([.nodes[] | has("name") and has("type") and has("parameters")] | all)
+            ' "$file" >/dev/null
+          done
+
+      - name: Check public-export safety
+        shell: bash
+        run: |
+          set -euo pipefail
+          if grep -RniE             --include='workflow.json'             '"credentials"|"instanceId"|"credentialId"|"apiKey"|"accessToken"|"clientSecret"' .; then
+            echo "Private credential or instance metadata found."
+            exit 1
+          fi
+
+          if grep -RniE             --include='workflow.json'             '[a-f0-9]{32}' . | grep -v 'YOUR_ASSESSMENT_ID'; then
+            echo "Possible private assessment identifier found."
+            exit 1
+          fi
